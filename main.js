@@ -10,19 +10,18 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-oldword = "";
-oldword = oldword.trim();
-oldword = oldword.toLowercase();
 const pigLatin = (oldword) =>{
   let vowels = ["a", "e", "i", "o", "u"]
+  let newWord = "";
   if (vowels.indexOf(oldword[0]) > -1){
-    return oldword+"yay";
+    newWord = oldword.trim().toLowerCase() + "yay";
+    return newWord;
   }
   else{
     let firstLetter = oldword.match(/[aeiou]/);
     let vowel = oldword.indexOf(firstLetter[0]);
-    newWord = oldword.substring(vowel) + oldword.substring(0, vowel) + "ay";
-    return newWord
+    newWord = oldword.substring(vowel).trim().toLowerCase() + oldword.substring(0, vowel).trim().toLowerCase() + "ay";
+    return newWord;
   }
 }
 
