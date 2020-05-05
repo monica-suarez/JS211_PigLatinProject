@@ -87,8 +87,7 @@ update. No need to do it more than once.
 working directory" by committing or removing all of your changes. You check for
 a "clean working environment" by running `git status` and making sure no files
 show up.
-
-1. Run `git pull upstream gh-pages`
+`
 
 ![Contributing workflow](https://docs.google.com/drawings/d/1WeKQxOHgPKfwjy_eKtlJO62Fu4XTCWFeqkAh1oIqICM/pub?w=960&h=720)
 
@@ -98,6 +97,7 @@ Simply run `node path/to/file.js`
 
 example `node 01week/rockPaperScissors.js`
 
+1. Run `git pull upstream gh-pages
 ### Running Tests
 
 Tests are a great way to make sure you code works the way you planned it would,
