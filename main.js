@@ -10,20 +10,48 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const pigLatin = (oldword) =>{
-  let vowels = ["a", "e", "i", "o", "u"]
-  let newWord = "";
-  if (vowels.indexOf(oldword[0]) > -1){
-    newWord = oldword.trim().toLowerCase() + "yay";
-    return newWord;
+// const pigLatin = (oldword) =>{
+//   let vowels = ["a", "e", "i", "o", "u"]
+//   let newWord = "";
+//   if (vowels.indexOf(oldword[0]) > -1){
+//     newWord = oldword.trim().toLowerCase() + "yay";
+//     return newWord;
+//   }
+//   else{
+//     let firstLetter = oldword.match(/[aeiou]/);
+//     let vowel = oldword.indexOf(firstLetter[0]);
+//     newWord = oldword.substring(vowel).trim().toLowerCase() + oldword.substring(0, vowel).trim().toLowerCase() + "ay";
+//     return newWord;
+//   }
+// }
+const pigLatin = (oldword)=>{
+  if (oldword.match(/ /)) {
+    oldword = oldword.toLowerCase().trim();
+    let wordArr = oldword.split(' ');
+    let result = '';
+    for (let i = 0; i < wordArr.length; i++) {
+      if (i > 0) {
+        result += ' ';
+      }
+      result += translate(wordArr[i]);
+    }
+    return result;
   }
-  else{
-    let firstLetter = oldword.match(/[aeiou]/);
-    let vowel = oldword.indexOf(firstLetter[0]);
-    newWord = oldword.substring(vowel).trim().toLowerCase() + oldword.substring(0, vowel).trim().toLowerCase() + "ay";
-    return newWord;
-  }
+  return translate(oldword);
 }
+const translate = (oldword)=> {
+  let i = oldword.search(/[aeiou]/);
+  if (!i) {
+    return oldword + 'yay';
+  }
+  if (oldword.match(/qu/)) {
+    if (oldword.indexOf('qu') < i) { 
+      i++;
+    }
+  }
+  return oldword.substr(i) + oldword.substr(0, i) + 'ay';
+};
+
 
 
 // the first function called in the program to get an input from the user
@@ -58,6 +86,12 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin('HeLlO '), 'ellohay');
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
+    it('should test for words starting with mult consonants', () => {
+      assert.equal(pigLatin('drop'), 'opdray');
+    });
+    it('should test for multiple words', () =>{
+      assert.equal(pigLatin('run away'), 'unray awayyay');
+    });
   });
 } else {
 
@@ -77,4 +111,4 @@ if (typeof describe === 'function') {
 // break your code into pieces and focus on one piece at a time...
 // 1. if word begins with a vowel send to one function: adds "yay"
 // 2. if word begins in with a consonant send to another function: splices off beginning, returns word with new ending.
-// 3. if multiple words, create array of words, loop over them, sending them to different functions and creating a new array with the new words.
+  // 3. if multiple words, create array of words, loop over them, sending them to different functions and creating a new array with the new words 
