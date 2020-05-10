@@ -10,20 +10,6 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// const pigLatin = (oldword) =>{
-//   let vowels = ["a", "e", "i", "o", "u"]
-//   let newWord = "";
-//   if (vowels.indexOf(oldword[0]) > -1){
-//     newWord = oldword.trim().toLowerCase() + "yay";
-//     return newWord;
-//   }
-//   else{
-//     let firstLetter = oldword.match(/[aeiou]/);
-//     let vowel = oldword.indexOf(firstLetter[0]);
-//     newWord = oldword.substring(vowel).trim().toLowerCase() + oldword.substring(0, vowel).trim().toLowerCase() + "ay";
-//     return newWord;
-//   }
-// }
 const pigLatin = (oldword)=>{
   if (oldword.match(/ /)) {
     oldword = oldword.toLowerCase().trim();
@@ -39,18 +25,48 @@ const pigLatin = (oldword)=>{
   }
   return translate(oldword);
 }
-const translate = (oldword)=> {
-  let i = oldword.search(/[aeiou]/);
-  if (!i) {
-    return oldword + 'yay';
+const translate = (oldword) =>{
+  let vowels = ["a", "e", "i", "o", "u"]
+  let newWord = "";
+  if (vowels.indexOf(oldword[0]) > -1){
+    newWord = oldword + "yay";
+    return newWord;
   }
-  if (oldword.match(/qu/)) {
-    if (oldword.indexOf('qu') < i) { 
-      i++;
-    }
+  
+  else{
+    let firstLetter = oldword.match(/[aeiou]/);
+    let vowel = oldword.indexOf(firstLetter[0]);
+    newWord = oldword.substring(vowel) + oldword.substring(0, vowel) + "ay";
+    return newWord;
   }
-  return oldword.substr(i) + oldword.substr(0, i) + 'ay';
-};
+}
+// const pigLatin = (oldword)=>{
+//   if (oldword.match(/ /)) {
+//     oldword = oldword.toLowerCase().trim();
+//     let wordArr = oldword.split(' ');
+//     let result = '';
+//     for (let i = 0; i < wordArr.length; i++) {
+//       if (i > 0) {
+//         result += ' ';
+//       }
+//       result += translate(wordArr[i]);
+//     }
+//     return result;
+//   }
+//   return translate(oldword);
+// }
+// const translate = (oldword)=> {
+//   let i = oldword.search(/[aeiou]/);
+//   if (!i) {
+//     return oldword + 'yay';
+//   }
+//   if (oldword.match(/qu/)) {
+//     if (oldword.indexOf('qu') < i) { 
+//       i++;
+//     }
+//   }
+//   return oldword.substr(i) + oldword.substr(0, i) + 'ay';
+// };
 
 
 
