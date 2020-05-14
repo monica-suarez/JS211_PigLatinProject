@@ -32,7 +32,7 @@ const translate = (oldword) =>{
   let newWord = "";
   if (vowels.indexOf(oldword[0]) > -1){
     newWord = oldword + "yay";
-    document.getElementById("showTranslation2").innerHTML = newWord;
+    document.getElementById("showTranslation").innerHTML = newWord;
     return newWord;
   }
   
@@ -40,7 +40,7 @@ const translate = (oldword) =>{
     let firstLetter = oldword.match(/[aeiou]/);
     let vowel = oldword.indexOf(firstLetter[0]);
     newWord = oldword.substring(vowel) + oldword.substring(0, vowel) + "ay";
-    document.getElementById("showTranslation3").innerHTML = newWord;
+    document.getElementById("showTranslation").innerHTML = newWord;
     return newWord;
   }
 }
